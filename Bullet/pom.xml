@@ -9,13 +9,15 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>Player</artifactId>
+    <artifactId>Bullet</artifactId>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>dk.sdu.cbse</groupId>
@@ -23,13 +25,5 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse</groupId>
-            <artifactId>Bullet</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
-
-
-
 </project>

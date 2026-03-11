@@ -1,5 +1,7 @@
 module Core {
     requires Common;
+    requires Player;
+    requires Bullet;
 
     requires javafx.graphics;
     requires javafx.controls;
