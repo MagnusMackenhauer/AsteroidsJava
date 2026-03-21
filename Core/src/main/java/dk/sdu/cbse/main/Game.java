@@ -9,6 +9,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ServiceLoader;
@@ -28,6 +29,10 @@ public class Game {
 
         // Sætter størrelsen på vinduet
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
+
+        // Score-tekst
+        Text scoreText = new Text(10, 20, "Score: 0");
+        gameWindow.getChildren().add(scoreText);
 
         // Opretter JavaFX scene
         Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
@@ -54,6 +59,9 @@ public class Game {
 
                 // Tegner entities
                 draw();
+
+                // Opdaterer score-teksten
+                scoreText.setText("Score: " + gameData.getScore());
             }
         }.start();
 
@@ -81,8 +89,9 @@ public class Game {
 
     private void draw() {
 
-        // Fjerner alt der er tegnet i sidste frame
-        gameWindow.getChildren().clear();
+        // Fjerner kun polygons fra sidste frame
+        // Så score-teksten bliver stående
+        gameWindow.getChildren().removeIf(node -> node instanceof Polygon);
 
         // Tegner alle entities i verden
         for (Entity entity : world.getEntities()) {

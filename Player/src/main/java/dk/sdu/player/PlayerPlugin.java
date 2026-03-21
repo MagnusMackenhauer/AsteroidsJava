@@ -46,6 +46,8 @@ public class PlayerPlugin implements IGamePluginService {
                 5.0, 5.0
         });
 
+        player.setRadius(8);
+
         return player;
     }
 }

@@ -25,6 +25,8 @@ public class BulletControlSystem implements IEntityProcessingService, IBulletSPI
 
         Bullet bullet = new Bullet();
 
+        bullet.setRadius(2);
+
         double radians = Math.toRadians(shooter.getRotation() - 90);
         double bulletSpeed = 6.0;
 

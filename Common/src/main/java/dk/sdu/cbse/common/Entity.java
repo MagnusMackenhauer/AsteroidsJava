@@ -12,6 +12,7 @@ public class Entity {
     private double rotation;
     private double dx;
     private double dy;
+    private double radius;
 
     private double[] shape;
 
@@ -77,6 +78,14 @@ public class Entity {
     // Sætter polygonens punkter
     public void setShape(double[] shape) {
         this.shape = shape;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
     }
 
 

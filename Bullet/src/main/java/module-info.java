@@ -1,4 +1,5 @@
 module Bullet {
+    exports dk.sdu.bullet;
 
     requires Common;
 

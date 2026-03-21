@@ -8,5 +8,6 @@ module Player {
             with dk.sdu.player.PlayerPlugin;
 
     provides dk.sdu.cbse.common.interfaces.IEntityProcessingService
-            with dk.sdu.player.PlayerControlSystem;
+            with dk.sdu.player.PlayerControlSystem,
+                    dk.sdu.player.PlayerCollisionSystem;
 }

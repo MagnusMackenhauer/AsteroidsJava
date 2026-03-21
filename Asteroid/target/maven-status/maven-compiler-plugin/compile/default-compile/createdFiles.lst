@@ -1,0 +1,5 @@
+dk/sdu/asteroid/Asteroid.class
+dk/sdu/asteroid/AsteroidPlugin.class
+module-info.class
+dk/sdu/asteroid/AsteroidCollisionSystem.class
+dk/sdu/asteroid/AsteroidControlSystem.class

@@ -2,6 +2,7 @@ module Core {
     requires Common;
     requires Player;
     requires Bullet;
+    requires Asteroid;
 
     requires javafx.graphics;
     requires javafx.controls;
