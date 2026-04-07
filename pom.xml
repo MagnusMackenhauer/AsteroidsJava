@@ -18,6 +18,7 @@
     <module>Bullet</module>
     <module>Asteroid</module>
     <module>Collision</module>
+      <module>Score</module>
   </modules>
 
   <properties>

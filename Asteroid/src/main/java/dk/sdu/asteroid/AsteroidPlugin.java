@@ -29,7 +29,7 @@ public class AsteroidPlugin implements IGamePluginService {
     private Asteroid createAsteroid(GameData gameData) {
         Asteroid asteroid = new Asteroid();
 
-        asteroid.setRadius(2);
+        asteroid.setRadius(5);
 
         asteroid.setX(random.nextInt(gameData.getDisplayWidth()));
         asteroid.setY(random.nextInt(gameData.getDisplayHeight()));

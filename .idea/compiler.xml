@@ -8,10 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Bullet" />
         <module name="Player" />
+        <module name="Score" />
         <module name="Asteroid" />
+        <module name="Collision" />
         <module name="Core" />
         <module name="Common" />
-        <module name="Collision" />
       </profile>
     </annotationProcessing>
   </component>
