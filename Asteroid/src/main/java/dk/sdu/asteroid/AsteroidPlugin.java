@@ -3,6 +3,7 @@ package dk.sdu.asteroid;
 import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.World;
 import dk.sdu.cbse.common.interfaces.IGamePluginService;
+import dk.sdu.commonasteroid.Asteroid;
 
 import java.util.Random;
 
@@ -30,12 +31,9 @@ public class AsteroidPlugin implements IGamePluginService {
         Asteroid asteroid = new Asteroid();
 
         asteroid.setRadius(5);
-
         asteroid.setX(random.nextInt(gameData.getDisplayWidth()));
         asteroid.setY(random.nextInt(gameData.getDisplayHeight()));
-
         asteroid.setRotation(random.nextInt(360));
-
         asteroid.setDx(random.nextDouble() * 2 - 1);
         asteroid.setDy(random.nextDouble() * 2 - 1);
 

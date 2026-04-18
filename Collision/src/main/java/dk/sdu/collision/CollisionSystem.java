@@ -1,37 +1,24 @@
 package dk.sdu.collision;
 
-import dk.sdu.cbse.common.CollisionEvent;
 import dk.sdu.cbse.common.Entity;
 import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.World;
-import dk.sdu.cbse.common.interfaces.ICollidable;
 import dk.sdu.cbse.common.interfaces.IEntityProcessingService;
-
-import java.util.List;
 
 public class CollisionSystem implements IEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
-        world.clearCollisionEvents();
-        List<Entity> entities = world.getEntities();
+        for (Entity entity1 : world.getEntities()) {
+            for (Entity entity2 : world.getEntities()) {
 
-        for (int i = 0; i < entities.size(); i++) {
-            Entity entity1 = entities.get(i);
-
-            if (!(entity1 instanceof ICollidable)) {
-                continue;
-            }
-
-            for (int j = i + 1; j < entities.size(); j++) {
-                Entity entity2 = entities.get(j);
-
-                if (!(entity2 instanceof ICollidable)) {
+                if (entity1.getId().equals(entity2.getId())) {
                     continue;
                 }
 
-                if (collides(entity1, entity2)) {
-                    world.addCollisionEvent(new CollisionEvent(entity1, entity2));
+                if (collides(entity1, entity2) && entity1.getClass() != entity2.getClass()) {
+                    entity1.setIsHit(true);
+                    entity2.setIsHit(true);
                 }
             }
         }

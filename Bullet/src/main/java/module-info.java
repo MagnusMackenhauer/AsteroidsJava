@@ -2,8 +2,9 @@ module Bullet {
     exports dk.sdu.bullet;
 
     requires Common;
+    requires CommonBullet;
 
-    provides dk.sdu.cbse.common.interfaces.IBulletSPI
+    provides dk.sdu.commonbullet.BulletSPI
             with dk.sdu.bullet.BulletControlSystem;
 
     provides dk.sdu.cbse.common.interfaces.IEntityProcessingService

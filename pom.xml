@@ -15,10 +15,11 @@
     <module>Core</module>
     <module>Common</module>
     <module>Player</module>
-    <module>Bullet</module>
     <module>Asteroid</module>
     <module>Collision</module>
-      <module>Score</module>
+      <module>CommonAsteroid</module>
+    <module>CommonBullet</module>
+    <module>Bullet</module>
   </modules>
 
   <properties>

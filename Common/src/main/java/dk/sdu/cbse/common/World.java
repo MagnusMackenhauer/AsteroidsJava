@@ -18,18 +18,4 @@ public class World {
     public List<Entity> getEntities() {
         return new ArrayList<>(entities);
     }
-
-    private final List<CollisionEvent> collisionEvents = new ArrayList<>();
-
-    public List<CollisionEvent> getCollisionEvents() {
-        return collisionEvents;
-    }
-
-    public void addCollisionEvent(CollisionEvent event) {
-        collisionEvents.add(event);
-    }
-
-    public void clearCollisionEvents() {
-        collisionEvents.clear();
-    }
 }

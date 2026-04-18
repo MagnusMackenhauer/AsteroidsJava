@@ -88,6 +88,11 @@ public class Entity {
         this.radius = radius;
     }
 
+    private boolean isHit = false;
+
+    public boolean isHit() { return isHit; }
+    public void setIsHit(boolean isHit) { this.isHit = isHit; }
+
 
 
 

@@ -1,5 +1,4 @@
 dk/sdu/player/Player.class
 module-info.class
 dk/sdu/player/PlayerPlugin.class
-dk/sdu/player/PlayerCollisionSystem.class
 dk/sdu/player/PlayerControlSystem.class
