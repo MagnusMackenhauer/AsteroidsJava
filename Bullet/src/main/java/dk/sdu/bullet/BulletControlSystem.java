@@ -3,6 +3,9 @@ package dk.sdu.bullet;
 import dk.sdu.cbse.common.Entity;
 import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.World;
+import dk.sdu.cbse.common.entityparts.LifePart;
+import dk.sdu.cbse.common.entityparts.MovingPart;
+import dk.sdu.cbse.common.entityparts.PositionPart;
 import dk.sdu.commonbullet.Bullet;
 import dk.sdu.commonbullet.BulletSPI;
 import dk.sdu.cbse.common.interfaces.IEntityProcessingService;
@@ -14,32 +17,37 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
 
     @Override
     public Entity createBullet(Entity shooter) {
-
         Bullet bullet = new Bullet();
 
-        bullet.setRadius(2);
+        PositionPart shooterPos = shooter.getPart(PositionPart.class);
+        MovingPart shooterMov = shooter.getPart(MovingPart.class);
 
-        double radians = Math.toRadians(shooter.getRotation() - 90);
+        double radians = Math.toRadians(shooterPos.getRotation() - 90);
         double bulletSpeed = 6.0;
-
-        /*
-        bullet.setX(shooter.getX());
-        bullet.setY(shooter.getY());
-        */
         double spawnOffset = shooter.getRadius() + 5;
-        bullet.setX(shooter.getX() + Math.cos(radians) * spawnOffset);
-        bullet.setY(shooter.getY() + Math.sin(radians) * spawnOffset);
-        bullet.setRotation(shooter.getRotation());
 
+        bullet.setRadius(2);
         bullet.setShape(new double[]{
                 -2.0, -2.0,
                 2.0, -2.0,
-                2.0,  2.0,
-                -2.0,  2.0
+                2.0, 2.0,
+                -2.0, 2.0
         });
 
-        bullet.setDx(shooter.getDx() + Math.cos(radians) * bulletSpeed);
-        bullet.setDy(shooter.getDy() + Math.sin(radians) * bulletSpeed);
+        bullet.add(new PositionPart(
+                shooterPos.getX() + Math.cos(radians) * spawnOffset,
+                shooterPos.getY() + Math.sin(radians) * spawnOffset,
+                shooterPos.getRotation()
+        ));
+
+        MovingPart movingPart = new MovingPart(1.0, 0, 10, 0);
+        movingPart.setDx(shooterMov.getDx() + Math.cos(radians) * bulletSpeed);
+        movingPart.setDy(shooterMov.getDy() + Math.sin(radians) * bulletSpeed);
+        bullet.add(movingPart);
+
+        bullet.add(new LifePart(120));
+
+        bullet.setCollisionGroup(1);
 
         return bullet;
     }
@@ -51,16 +59,16 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
 
         for (Entity entity : world.getEntities()) {
 
-            if (entity instanceof Bullet bullet) {
+            if (entity instanceof Bullet) {
 
-                bullet.setX(bullet.getX() + bullet.getDx());
-                bullet.setY(bullet.getY() + bullet.getDy());
+                // Parts håndterer bevægelse, wraparound og life-countdown
+                entity.processAllParts(gameData);
 
-                bullet.decreaseLife();
-
-                if (bullet.getLife() <= 0) {
-                    removeList.add(bullet);
+                LifePart lifePart = entity.getPart(LifePart.class);
+                if (lifePart.isExpired()) {
+                    removeList.add(entity);
                 }
+
                 if (entity.isHit()) {
                     removeList.add(entity);
                 }

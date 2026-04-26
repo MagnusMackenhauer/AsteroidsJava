@@ -26,14 +26,23 @@
 
         <dependency>
             <groupId>dk.sdu.cbse</groupId>
-            <artifactId>Bullet</artifactId>
+            <artifactId>CommonAsteroid</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>dk.sdu.cbse</groupId>
-            <artifactId>Asteroid</artifactId>
+            <artifactId>Player</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
