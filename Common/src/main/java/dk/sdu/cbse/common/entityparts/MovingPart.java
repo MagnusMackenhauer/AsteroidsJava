@@ -7,8 +7,8 @@ public class MovingPart implements EntityPart {
 
     private double dx;
     private double dy;
-    private double deceleration;
     private double acceleration;
+    private double deceleration;
     private double maxSpeed;
     private double rotationSpeed;
     private boolean left, right, up;
@@ -30,10 +30,12 @@ public class MovingPart implements EntityPart {
     public void setRight(boolean right) { this.right = right; }
     public void setUp(boolean up) { this.up = up; }
 
+    /*
     public void setSpeed(double speed) {
         this.acceleration = speed;
         this.maxSpeed = speed;
     }
+    */
 
     @Override
     public void process(GameData gameData, Entity entity) {

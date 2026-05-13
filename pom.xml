@@ -23,6 +23,8 @@
 
     <module>CommonEnemy</module>
     <module>Enemy</module>
+
+      <module>CommonScore</module>
   </modules>
 
   <properties>

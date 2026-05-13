@@ -6,6 +6,7 @@ import dk.sdu.cbse.common.World;
 import dk.sdu.cbse.common.entityparts.PositionPart;
 import dk.sdu.cbse.common.interfaces.IEntityProcessingService;
 import dk.sdu.cbse.common.interfaces.IGamePluginService;
+import dk.sdu.cbse.common.interfaces.IPostEntityProcessingService;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -22,11 +23,15 @@ public class Game {
 
     private final List<IGamePluginService> plugins;
     private final List<IEntityProcessingService> processors;
+    private final List<IPostEntityProcessingService> postProcessors;
 
-    // Spring injicerer via ModuleConfig.game()
-    public Game(List<IGamePluginService> plugins, List<IEntityProcessingService> processors) {
+
+    public Game(List<IGamePluginService> plugins,
+                List<IEntityProcessingService> processors,
+                List<IPostEntityProcessingService> postProcessors) {
         this.plugins = plugins;
         this.processors = processors;
+        this.postProcessors = postProcessors;
     }
 
     public void start(Stage window) {
@@ -59,6 +64,9 @@ public class Game {
     private void update() {
         for (IEntityProcessingService processor : processors) {
             processor.process(gameData, world);
+        }
+        for (IPostEntityProcessingService postProcessor : postProcessors) {
+            postProcessor.process(gameData, world);
         }
     }
 

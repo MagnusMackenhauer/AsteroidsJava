@@ -49,4 +49,9 @@ public class Entity {
 
     public int getCollisionGroup() { return collisionGroup; }
     public void setCollisionGroup(int collisionGroup) { this.collisionGroup = collisionGroup; }
+
+    private int scoreValue = 0;
+
+    public int getScoreValue() { return scoreValue; }
+    public void setScoreValue(int scoreValue) { this.scoreValue = scoreValue; }
 }

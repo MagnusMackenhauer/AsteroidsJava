@@ -13,10 +13,16 @@ import java.util.ServiceLoader;
 public class PlayerControlSystem implements IEntityProcessingService {
 
     private boolean spacePressedLastFrame = false;
+    private int frameCounter = 0;
 
     private final BulletSPI bulletSPI = ServiceLoader.load(BulletSPI.class)
             .findFirst()
             .orElse(null);
+
+    /*
+    private final ScoreSPI scoreService = ServiceLoader.load(ScoreSPI.class)
+            .findFirst()
+            .orElse(null);*/
 
     @Override
     public void process(GameData gameData, World world) {
@@ -24,27 +30,35 @@ public class PlayerControlSystem implements IEntityProcessingService {
         boolean spacePressedNow = gameData.getKeys().contains("SPACE");
 
         for (Entity entity : world.getEntities()) {
-
             if (entity instanceof Player) {
 
                 MovingPart movingPart = entity.getPart(MovingPart.class);
                 PositionPart positionPart = entity.getPart(PositionPart.class);
 
-                // Sæt input-flags på MovingPart
                 movingPart.setLeft(gameData.getKeys().contains("LEFT"));
                 movingPart.setRight(gameData.getKeys().contains("RIGHT"));
                 movingPart.setUp(gameData.getKeys().contains("UP"));
 
-                // Lad parts håndtere bevægelse og wraparound
                 entity.processAllParts(gameData);
 
-                // Skydning
                 if (spacePressedNow && !spacePressedLastFrame && bulletSPI != null) {
-                    Entity bullet = bulletSPI.createBullet(entity);
+                    Entity bullet = bulletSPI.createBullet(entity, 1);
                     world.addEntity(bullet);
                 }
 
-                // Hit-håndtering
+                if (!entity.isHit()) {
+                    frameCounter++;
+                    if (frameCounter >= 60) {
+                        frameCounter = 0;
+                        /*
+                        if (scoreService != null) {
+                            scoreService.addScore(1);
+                        }
+
+                         */
+                    }
+                }
+
                 handleHit(entity, world);
             }
         }

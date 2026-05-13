@@ -16,7 +16,7 @@ import java.util.List;
 public class BulletControlSystem implements IEntityProcessingService, BulletSPI {
 
     @Override
-    public Entity createBullet(Entity shooter) {
+    public Entity createBullet(Entity shooter, int collisionGroup) {
         Bullet bullet = new Bullet();
 
         PositionPart shooterPos = shooter.getPart(PositionPart.class);
@@ -47,7 +47,7 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
 
         bullet.add(new LifePart(120));
 
-        bullet.setCollisionGroup(1);
+        bullet.setCollisionGroup(collisionGroup);
 
         return bullet;
     }

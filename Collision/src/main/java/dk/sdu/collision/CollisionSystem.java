@@ -5,8 +5,9 @@ import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.World;
 import dk.sdu.cbse.common.entityparts.PositionPart;
 import dk.sdu.cbse.common.interfaces.IEntityProcessingService;
+import dk.sdu.cbse.common.interfaces.IPostEntityProcessingService;
 
-public class CollisionSystem implements IEntityProcessingService {
+public class CollisionSystem implements IPostEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
