@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ScoringSystem {
 
-    private Long totalScore = 0L;
+    private Long Score = 0L;
 
     public static void main(String[] args) {
         SpringApplication.run(ScoringSystem.class, args);
@@ -18,12 +18,12 @@ public class ScoringSystem {
 
     @GetMapping("/score")
     public Long addScore(@RequestParam(value = "point") Long point) {
-        totalScore += point;
-        return totalScore;
+        Score += point;
+        return Score;
     }
 
     @GetMapping("/score/current")
     public Long getScore() {
-        return totalScore;
+        return Score;
     }
 }
