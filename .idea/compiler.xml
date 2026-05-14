@@ -9,14 +9,16 @@
         <module name="Bullet" />
         <module name="Player" />
         <module name="CommonEnemy" />
-        <module name="Asteroid" />
         <module name="Collision" />
-        <module name="Enemy" />
         <module name="CommonAsteroid" />
-        <module name="CommonScore" />
         <module name="CommonBullet" />
-        <module name="Core" />
         <module name="Common" />
+        <module name="Asteroid" />
+        <module name="Enemy" />
+        <module name="CommonScore" />
+        <module name="ScoringCilent" />
+        <module name="Core" />
+        <module name="ScoringSystem" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -26,6 +28,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Score" options="-parameters" />
+      <module name="ScoringSystem" options="-parameters" />
     </option>
   </component>
 </project>

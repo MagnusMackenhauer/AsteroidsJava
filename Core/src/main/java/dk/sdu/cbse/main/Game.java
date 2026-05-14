@@ -11,8 +11,13 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import javafx.scene.paint.Color;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.List;
 
 public class Game {
@@ -38,6 +43,10 @@ public class Game {
 
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
 
+        Text scoreText = new Text(10, 20, "Score: 0");
+        scoreText.setFill(Color.BLACK);
+        gameWindow.getChildren().add(scoreText);
+
         Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
 
         scene.setOnKeyPressed(e -> gameData.getKeys().add(e.getCode().toString()));
@@ -52,6 +61,8 @@ public class Game {
             public void handle(long now) {
                 update();
                 draw();
+
+                scoreText.setText("Score: " + getScoreFromService());
             }
         }.start();
 
@@ -83,5 +94,21 @@ public class Game {
             polygon.setRotate(pos.getRotation());
             gameWindow.getChildren().add(polygon);
         }
+    }
+
+    private long getScoreFromService() {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/score/current"))
+                    .GET()
+                    .build();
+            HttpResponse<String> response = client.send(
+                    request, HttpResponse.BodyHandlers.ofString());
+            return Long.parseLong(response.body());
+        } catch (Exception e) {
+            return 0L;
+        }
+
     }
 }

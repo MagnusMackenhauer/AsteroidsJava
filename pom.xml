@@ -25,6 +25,9 @@
     <module>Enemy</module>
 
       <module>CommonScore</module>
+
+    <module>ScoringCilent</module>
+    <module>ScoringSystem</module>
   </modules>
 
   <properties>

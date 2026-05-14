@@ -1,0 +1,4 @@
+--patch-module
+ScoringClient=_
+--add-reads
+ScoringClient=ALL-UNNAMED

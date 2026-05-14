@@ -7,6 +7,7 @@ import dk.sdu.cbse.common.entityparts.MovingPart;
 import dk.sdu.cbse.common.entityparts.PositionPart;
 import dk.sdu.cbse.common.interfaces.IEntityProcessingService;
 import dk.sdu.commonbullet.BulletSPI;
+import dk.sdu.commonscore.ScoreSPI;
 
 import java.util.ServiceLoader;
 
@@ -19,10 +20,10 @@ public class PlayerControlSystem implements IEntityProcessingService {
             .findFirst()
             .orElse(null);
 
-    /*
+
     private final ScoreSPI scoreService = ServiceLoader.load(ScoreSPI.class)
             .findFirst()
-            .orElse(null);*/
+            .orElse(null);
 
     @Override
     public void process(GameData gameData, World world) {
@@ -50,12 +51,12 @@ public class PlayerControlSystem implements IEntityProcessingService {
                     frameCounter++;
                     if (frameCounter >= 60) {
                         frameCounter = 0;
-                        /*
+
                         if (scoreService != null) {
                             scoreService.addScore(1);
                         }
 
-                         */
+
                     }
                 }
 

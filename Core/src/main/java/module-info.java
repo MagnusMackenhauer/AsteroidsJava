@@ -7,6 +7,8 @@ module Core {
     requires spring.context;
     requires spring.beans;
     requires spring.core;
+    requires java.desktop;
+    requires java.net.http;
 
     uses dk.sdu.cbse.common.interfaces.IGamePluginService;
     uses dk.sdu.cbse.common.interfaces.IEntityProcessingService;
