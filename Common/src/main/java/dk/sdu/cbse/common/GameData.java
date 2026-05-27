@@ -17,5 +17,10 @@ public class GameData {
 
     public Set<String> getKeys() { return keys; }
 
+    private long score = 0;
+
+    public long getScore() { return score; }
+    public void setScore(long score) { this.score = score; }
+
 
 }

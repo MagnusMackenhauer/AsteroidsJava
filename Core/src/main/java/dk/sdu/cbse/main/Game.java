@@ -14,10 +14,6 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 
 public class Game {
@@ -62,7 +58,7 @@ public class Game {
                 update();
                 draw();
 
-                scoreText.setText("Score: " + getScoreFromService());
+                scoreText.setText("Score: " + gameData.getScore());
             }
         }.start();
 
@@ -94,21 +90,5 @@ public class Game {
             polygon.setRotate(pos.getRotation());
             gameWindow.getChildren().add(polygon);
         }
-    }
-
-    private long getScoreFromService() {
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8080/score/current"))
-                    .GET()
-                    .build();
-            HttpResponse<String> response = client.send(
-                    request, HttpResponse.BodyHandlers.ofString());
-            return Long.parseLong(response.body());
-        } catch (Exception e) {
-            return 0L;
-        }
-
     }
 }

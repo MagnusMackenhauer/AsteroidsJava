@@ -22,4 +22,19 @@ public class ScoringClient implements ScoreSPI {
             System.out.println("Score service not available");
         }
     }
+
+    @Override
+    public long getScore() {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/score/current"))
+                    .GET()
+                    .build();
+            HttpResponse<String> response = client.send(
+                    request, HttpResponse.BodyHandlers.ofString());
+            return Long.parseLong(response.body());
+        } catch (Exception e) {
+            return 0L;
+        }
+    }
 }

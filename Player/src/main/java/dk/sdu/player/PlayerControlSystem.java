@@ -20,7 +20,6 @@ public class PlayerControlSystem implements IEntityProcessingService {
             .findFirst()
             .orElse(null);
 
-
     private final ScoreSPI scoreService = ServiceLoader.load(ScoreSPI.class)
             .findFirst()
             .orElse(null);
@@ -54,9 +53,9 @@ public class PlayerControlSystem implements IEntityProcessingService {
 
                         if (scoreService != null) {
                             scoreService.addScore(1);
+                            // Hent opdateret score og gem i gameData
+                            gameData.setScore(scoreService.getScore());
                         }
-
-
                     }
                 }
 
