@@ -50,11 +50,8 @@ public class PlayerControlSystem implements IEntityProcessingService {
                     frameCounter++;
                     if (frameCounter >= 60) {
                         frameCounter = 0;
-
                         if (scoreService != null) {
-                            scoreService.addScore(1);
-                            // Hent opdateret score og gem i gameData
-                            gameData.setScore(scoreService.getScore());
+                            gameData.setScore(scoreService.addScore(1));
                         }
                     }
                 }

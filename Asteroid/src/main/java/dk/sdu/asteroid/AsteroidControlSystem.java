@@ -26,11 +26,9 @@ public class AsteroidControlSystem implements IEntityProcessingService {
         for (Entity entity : world.getEntities()) {
             if (entity instanceof Asteroid) {
 
-                // Rotation tilføjes manuelt — asteroider roterer altid
                 PositionPart pos = entity.getPart(PositionPart.class);
                 pos.setRotation(pos.getRotation() + 0.5);
 
-                // Parts håndterer bevægelse og wraparound
                 entity.processAllParts(gameData);
 
                 handleHit(entity, toSplit);

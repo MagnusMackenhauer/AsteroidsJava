@@ -15,9 +15,4 @@ public class ScoringSystem {
         score += point;
         return score;
     }
-
-    @GetMapping("/score/current")
-    public Long getScore() {
-        return score;
-    }
 }

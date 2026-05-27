@@ -61,7 +61,6 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
 
             if (entity instanceof Bullet) {
 
-                // Parts håndterer bevægelse, wraparound og life-countdown
                 entity.processAllParts(gameData);
 
                 LifePart lifePart = entity.getPart(LifePart.class);
